@@ -19,4 +19,4 @@ fi
 
 # Calculate the mean using awk and print the result
 mean=$(cut -d ',' -f $column "$file" | tail -n +2 | awk '{ sum += $1; count++ } END { print sum / count }')
-echo "Mean o  $column : $mean"
+echo "Mean of  $column : $mean"
