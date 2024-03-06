@@ -17,6 +17,21 @@ if [ ! -f "$file" ]; then
     exit 1
 fi
 
-# Calculate the mean using awk and print the result
-mean=$(cut -d ',' -f $column "$file" | tail -n +2 | awk '{ sum += $1; count++ } END { print sum / count }')
-echo "Mean of column  $column : $mean"
+
+tail -n +2 "$file" | cut -d ',' -f "$column" | {
+	sum=0
+	count=0
+	while read -r value; do
+		value=$((10#${value}))
+		sum=$((sum + value))
+		count=$((count + 1))
+	done
+	echo "$((sum / count))"
+}
+
+
+
+
+
+
+
